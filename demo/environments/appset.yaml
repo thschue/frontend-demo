@@ -18,11 +18,11 @@ spec:
         repoURL: 'https://github.com/thschue/frontend-demo.git'
         targetRevision: HEAD
         path: manifests/env
-        parameters:
-          - name: imageTag
-            value: '{{version}}'
-          - name: imageName
-            value: '{{image}}'
+      parameters:
+        - name: imageTag
+          value: '{{version}}'
+        - name: imageName
+          value: '{{image}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{ namespace }}'
