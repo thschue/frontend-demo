@@ -2,6 +2,10 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-name: frontend
-backend: stable
-url: "my.demo.example.com"
+name: demo-customer
+version: stable
+
+ingress:
+  url: "my.demo.example.com"
+  customUrl: ""
+

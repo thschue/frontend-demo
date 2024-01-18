@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  name: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}
     spec:
       containers:
       - name: appname
