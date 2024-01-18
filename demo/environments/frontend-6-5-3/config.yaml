@@ -1,3 +1,3 @@
 namespace: frontend
-image: ghcr.io/stefanprodan/podinfo
-version: 6.5.3
+imageName: ghcr.io/stefanprodan/podinfo
+imageTag: 6.5.3
