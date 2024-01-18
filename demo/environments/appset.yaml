@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-appset
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/thschue/frontend-demo.git
+        revision: HEAD
+        files:
+          - path: demo/environments/**/config.yaml
+  template:
+    metadata:
+      name: '{{ path.basename }}'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/thschue/frontend-demo.git'
+        targetRevision: HEAD
+        path: manifests/environment.yaml
+        parameters:
+          - name: imageTag
+            value: '{{version}}'
+          - name: imageName
+            value: '{{image}}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          syncOptions:
+            - CreateNamespace=true
