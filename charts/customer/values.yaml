@@ -5,6 +5,9 @@
 name: demo-customer
 version: stable
 
+frontend:
+  namespace: frontend
+
 ingress:
   url: "my.demo.example.com"
   customUrl: ""
