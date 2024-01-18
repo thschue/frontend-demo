@@ -24,6 +24,8 @@ spec:
               value: '{{ imageName }}'
             - name: "imageTag"
               value: '{{ imageTag }}'
+            - name: "name"
+              value: '{{ path.basename }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{ namespace }}'
