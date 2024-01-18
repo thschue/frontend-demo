@@ -4,5 +4,4 @@
 
 name: frontend
 backend: stable
-urls:
-  - "my.demo.example.com"
+url: "my.demo.example.com"
