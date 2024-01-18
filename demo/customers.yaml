@@ -20,8 +20,8 @@ spec:
         targetRevision: HEAD
         helm:
           parameters:
-            - name: "frontend"
-              value: '{{ frontend }}'
+            - name: "version"
+              value: '{{ version }}'
             - name: "name"
               value: '{{ path.basename }}'
             - name: "url"
