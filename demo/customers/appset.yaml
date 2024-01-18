@@ -1,29 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: appset-environments-base
+  name: appset-customers-base
 spec:
   generators:
     - git:
         repoURL: https://github.com/thschue/frontend-demo.git
         revision: HEAD
         files:
-          - path: demo/environments/**/config.yaml
+          - path: demo/customers/**/config.yaml
   template:
     metadata:
       name: '{{ path.basename }}'
     spec:
       project: default
       source:
-        path: charts/env
+        path: charts/customer
         repoURL: https://github.com/thschue/frontend-demo.git
         targetRevision: HEAD
         helm:
           parameters:
-            - name: "image.repository"
-              value: '{{ imageName }}'
-            - name: "image.tag"
-              value: '{{ imageTag }}'
+            - name: "frontend"
+              value: '{{ frontend }}'
             - name: "name"
               value: '{{ path.basename }}'
       destination:

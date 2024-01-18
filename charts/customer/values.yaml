@@ -1,0 +1,8 @@
+# Default values for env.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: frontend
+backend: stable
+urls:
+  - "my.demo.example.com"

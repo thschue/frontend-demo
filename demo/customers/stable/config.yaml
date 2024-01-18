@@ -1,4 +1,4 @@
 namespace: frontend
-version: 6.5.4
+frontend: frontend-6-5-4
 urls:
   - "*.demo.example.com"
