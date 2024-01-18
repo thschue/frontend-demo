@@ -20,9 +20,9 @@ spec:
         targetRevision: HEAD
         helm:
           parameters:
-            - name: "imageRepository"
+            - name: "image.repository"
               value: '{{ imageName }}'
-            - name: "imageTag"
+            - name: "image.tag"
               value: '{{ imageTag }}'
             - name: "name"
               value: '{{ path.basename }}'
