@@ -1,0 +1,12 @@
+kind: Service
+metadata:
+  name: {{ .Values.name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: tcp
+      name: {{ .Values.name }}
+  selector:
+    app: {{ .Values.name }}

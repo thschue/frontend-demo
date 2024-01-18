@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        app: frontend
+        app: {{ .Values.name }}
     spec:
       containers:
       - name: appname
