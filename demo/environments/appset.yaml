@@ -20,9 +20,9 @@ spec:
         path: manifests/env
         parameters:
           - name: imageTag
-            value: '{{ version }}'
+            value: '{{version}}'
           - name: imageName
-            value: '{{ image }}'
+            value: '{{image}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{ namespace }}'
