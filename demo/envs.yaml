@@ -11,7 +11,7 @@ spec:
           - path: demo/environments/**/config.yaml
   template:
     metadata:
-      name: '{{ path.basename }}'
+      name: 'env-{{ path.basename }}'
     spec:
       project: default
       source:

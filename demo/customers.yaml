@@ -11,7 +11,7 @@ spec:
           - path: demo/customers/**/config.yaml
   template:
     metadata:
-      name: '{{ path.basename }}'
+      name: 'customer-{{ path.basename }}'
     spec:
       project: default
       source:
