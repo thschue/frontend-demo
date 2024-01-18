@@ -15,9 +15,15 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/thschue/frontend-demo.git'
+        path: charts/env
+        repoURL: https://github.com/thschue/frontend-demo.git
         targetRevision: HEAD
-        path: manifests/env
+        helm:
+          parameters:
+            - name: "imageRepository"
+              value: '{{ imageName }}'
+            - name: "imageTag"
+              value: '{{ imageTag }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{ namespace }}'

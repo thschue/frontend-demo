@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: appname
-        image: ${imageName}:${imageTag}
+        image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
         resources:
           requests:
             memory: "32Mi"
