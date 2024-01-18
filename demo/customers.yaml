@@ -24,6 +24,8 @@ spec:
               value: '{{ frontend }}'
             - name: "name"
               value: '{{ path.basename }}'
+            - name: "urls"
+              value: '{{ urls }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{ namespace }}'
