@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: 'https://github.com/thschue/frontend-demo.git'
         targetRevision: HEAD
-        path: manifests/environment.yaml
+        path: manifests/env
         parameters:
           - name: imageTag
             value: '{{version}}'
