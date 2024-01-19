@@ -18,7 +18,7 @@ on:
           - dev
 
 jobs:
-  create_frontend:
+  remove_frontend:
     permissions:
       contents: write
 
