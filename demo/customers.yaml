@@ -8,7 +8,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/thschue/frontend-demo.git
-        revision: HEAD
+        revision: feat-appset-templating
         files:
           - path: demo/customers/**/config.yaml
   template:
@@ -19,7 +19,7 @@ spec:
       source:
         path: charts/customer
         repoURL: https://github.com/thschue/frontend-demo.git
-        targetRevision: HEAD
+        targetRevision: feat-appset-templating
         helm:
           parameters:
             - name: "version"
