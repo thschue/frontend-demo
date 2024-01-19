@@ -1,3 +1,4 @@
 namespace: frontend
-ingress: customer-1.demo.example.com
 version: 6.5.4
+ingress:
+  url: customer-1.demo.example.com
