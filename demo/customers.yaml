@@ -26,8 +26,8 @@ spec:
               value: '{{ .version }}'
             - name: "name"
               value: '{{ .path.basename }}'
-            - name: "url"
-              value: '{{ .url }}'
+            - name: "ingress.url"
+              value: '{{ .ingress.url }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{ .path.basename }}'
