@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-environments-base
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/thschue/frontend-demo.git
+        revision: HEAD
+        files:
+          - path: demo/environments/**/config.yaml
+  template:
+    metadata:
+      name: 'env-{{ path.basename }}'
+    spec:
+      project: default
+      source:
+        path: charts/env
+        repoURL: https://github.com/thschue/frontend-demo.git
+        targetRevision: HEAD
+        helm:
+          parameters:
+            - name: "image.repository"
+              value: '{{ imageName }}'
+            - name: "image.tag"
+              value: '{{ imageTag }}'
+            - name: "name"
+              value: '{{ path.basename }}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{ namespace }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

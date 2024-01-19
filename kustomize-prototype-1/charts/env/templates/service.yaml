@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}

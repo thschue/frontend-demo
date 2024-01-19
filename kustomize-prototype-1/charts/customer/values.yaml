@@ -1,0 +1,14 @@
+# Default values for env.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: demo-customer
+version: stable
+
+frontend:
+  namespace: frontend
+
+ingress:
+  url: "my.demo.example.com"
+  customUrl: ""
+

@@ -1,0 +1,57 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-{{ .Values.name }}
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.ingress.url }}
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            path: "/api"
+            backend:
+              service:
+                name: backend-{{ .Values.name }}
+                port:
+                  number: 8080
+          - pathType: ImplementationSpecific
+            path: "/favicon.ico"
+            backend:
+              service:
+                name: backend-{{ .Values.name }}
+                port:
+                  number: 8080
+          - pathType: ImplementationSpecific
+            path: "/auth"
+            backend:
+              service:
+                name: backend-{{ .Values.name }}
+                port:
+                  number: 8080
+  {{- if .Values.ingress.customUrl }}
+    - host: {{ .Values.ingress.customUrl }}
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            path: "/api"
+            backend:
+              service:
+                name: backend-{{ .Values.name }}
+                port:
+                  number: 8080
+          - pathType: ImplementationSpecific
+            path: "/favicon.ico"
+            backend:
+              service:
+                name: backend-{{ .Values.name }}
+                port:
+                  number: 8080
+          - pathType: ImplementationSpecific
+            path: "/auth"
+            backend:
+              service:
+                name: backend-{{ .Values.name }}
+                port:
+                  number: 8080
+  {{- end }}

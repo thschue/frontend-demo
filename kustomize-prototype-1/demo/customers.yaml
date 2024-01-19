@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-customers-base
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/thschue/frontend-demo.git
+        revision: HEAD
+        files:
+          - path: demo/customers/**/config.yaml
+  template:
+    metadata:
+      name: 'customer-{{ path.basename }}'
+    spec:
+      project: default
+      source:
+        path: charts/customer
+        repoURL: https://github.com/thschue/frontend-demo.git
+        targetRevision: HEAD
+        helm:
+          parameters:
+            - name: "version"
+              value: '{{ version }}'
+            - name: "name"
+              value: '{{ path.basename }}'
+            - name: "url"
+              value: '{{ url }}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{ path.basename }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

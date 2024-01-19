@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}
+spec:
+  selector:
+    matchLabels:
+      app: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}
+  template:
+    metadata:
+      labels:
+        app: frontend-{{ regexReplaceAll "\\W+" .Values.image.tag "-" }}
+    spec:
+      containers:
+      - name: appname
+        image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
