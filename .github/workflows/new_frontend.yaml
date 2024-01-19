@@ -38,5 +38,10 @@ jobs:
           imageTag: ${{ github.event.inputs.version }}
           EOF
           
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
+          git config pull.rebase true
+          
+          git add ./${{ github.event.inputs.stage }}/environments/frontend-$version/config.yaml
           git commit -m "Add new frontend version ${{ github.event.inputs.version }}"
           git push
