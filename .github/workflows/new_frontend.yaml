@@ -1,0 +1,42 @@
+name: New Frontend Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the frontend to deploy'
+        required: true
+        type: string
+      stage:
+        description: 'Stage to deploy to'
+        required: true
+        type: string
+        options:
+          - demo
+          - prod
+          - dev
+
+jobs:
+  create_frontend:
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - name: Add new frontend version
+        run: |
+          version=$(echo "${{ github.event.inputs.version }}" | sed 's/\./-/g')
+          mkdir -p ./${{ github.event.inputs.stage }}/environments/frontend-$version
+          
+          cat << EOF > ./${{ github.event.inputs.stage }}/environments/frontend-$version/config.yaml
+          namespace: frontend
+          imageName: ghcr.io/stefanprodan/podinfo
+          imageTag: ${{ github.event.inputs.version }}
+          EOF
+          
+          git commit -m "Add new frontend version ${{ github.event.inputs.version }}"
+          git push
