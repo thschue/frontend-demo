@@ -1,2 +1,2 @@
 resources:
-  - https://github.com/stefanprodan/podinfo/tree/master/kustomize/
+  - https://github.com/stefanprodan/podinfo/kustomize/
