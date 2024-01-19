@@ -1,4 +1,2 @@
 namespace: frontend
 version: 6.5.4
-ingress:
-  url: "stable.demo.example.com"
