@@ -10,7 +10,7 @@ on:
       stage:
         description: 'Stage to deploy to'
         required: true
-        type: string
+        type: choice
         options:
           - demo
           - prod
