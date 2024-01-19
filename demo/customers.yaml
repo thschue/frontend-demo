@@ -28,7 +28,6 @@ spec:
               value: '{{ .path.basename }}'
             - name: "ingress.url"
               value: '{{ .ingressUrl }}'
-              # value: '{{dig ".ingressUrl" "default.demo.example.com" .}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{ .path.basename }}'
