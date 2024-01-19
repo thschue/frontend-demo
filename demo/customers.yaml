@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: appset-customers-base
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
         repoURL: https://github.com/thschue/frontend-demo.git
@@ -11,7 +13,7 @@ spec:
           - path: demo/customers/**/config.yaml
   template:
     metadata:
-      name: 'customer-{{ path.basename }}'
+      name: 'customer-{{ .path.basename }}'
     spec:
       project: default
       source:
@@ -21,14 +23,14 @@ spec:
         helm:
           parameters:
             - name: "version"
-              value: '{{ version }}'
+              value: '{{ .version }}'
             - name: "name"
-              value: '{{ path.basename }}'
+              value: '{{ .path.basename }}'
             - name: "url"
-              value: '{{ url }}'
+              value: '{{ .url }}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{ path.basename }}'
+        namespace: '{{ .path.basename }}'
       syncPolicy:
         automated:
           prune: true
