@@ -1,3 +1,0 @@
-namespace: frontend
-imageName: ghcr.io/stefanprodan/podinfo
-imageTag: 6.5.1
