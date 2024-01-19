@@ -1,0 +1,43 @@
+name: Remove Frontend Version
+run-name: "Remove Frontend ${{ github.event.inputs.version }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the frontend to deploy'
+        required: true
+        type: string
+      stage:
+        description: 'Stage to remove from'
+        required: true
+        type: choice
+        options:
+          - demo
+          - prod
+          - dev
+
+jobs:
+  create_frontend:
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - name: Remove frontend version
+        run: |
+          version=$(echo "${{ github.event.inputs.version }}" | sed 's/\./-/g')
+          mkdir -p ./${{ github.event.inputs.stage }}/environments/frontend-$version
+        
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
+          git config pull.rebase true
+        
+          git rm -r ./${{ github.event.inputs.stage }}/environments/frontend-$version  
+          
+          git commit -m "Remove frontend version ${{ github.event.inputs.version }}"
+          git push
